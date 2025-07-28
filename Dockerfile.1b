@@ -1,0 +1,26 @@
+# Dockerfile
+
+# Use a specific, lightweight Python image.
+# [cite_start]Specify the platform to ensure compatibility with the judge's amd64 system. [cite: 56, 57]
+FROM --platform=linux/amd64 python:3.9-slim
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy the requirements file first to leverage Docker's layer caching
+COPY requirements.txt .
+
+# Update pip to the latest version to avoid potential bugs
+RUN pip install --upgrade pip
+
+# Install the Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the offline model into the image
+COPY model/ /app/model/
+
+# Copy your application code
+COPY process_1b.py .
+
+# This command will be executed when the container starts.
+CMD ["python", "process_1b.py"]

@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Temporary files
+download_model.py
+
+# VS Code
+.vscode/
+
+# Environment
+.env
+venv/
+env/
+
+# Ignore output files
+output/
